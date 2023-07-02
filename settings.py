@@ -26,19 +26,28 @@ SECRET_KEY = 'django-insecure-=f3&=3ddd!w+0m3^t17o8+j5iyzg8*zxcu3_23q$f0=*sg7e3=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ]
+}
+
 INSTALLED_APPS = [
+    'location',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {
@@ -69,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
